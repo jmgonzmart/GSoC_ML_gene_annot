@@ -96,9 +96,9 @@ Eventually, we decided to set stringent thresholds these features based on our o
 
 Splice junctions are the most important determinants of transcript quality. An annotator will reject a transcript if one of its splice junctions is  incorrect. This explains why most of the chosen features were related to splice junctions.
 
-Details of the annotation assessment results and the exploratory analysis can be found in these slides.
+Details of the annotation assessment results and the exploratory analysis can be found in [these slides](https://github.com/jmgonzmart/GSoC_ML_gene_annot/blob/main/analysis_update.pdf).
 
-The data underlying the analysis can be found in this file. The most relevant columns are the following:
+The data underlying the analysis can be found in [this file](https://github.com/jmgonzmart/GSoC_ML_gene_annot/blob/main/gene_annot_test.tsv). The most relevant columns are the following:
 - coords: genomic coordinates of the intron
 - outcome: annotator's decision on the quality of the splice junction or the transcript
 - score: number of RNA-seq reads that support the splice junction from a resource similar to Recount3
@@ -112,7 +112,7 @@ The data underlying the analysis can be found in this file. The most relevant co
 - rel_int_sup: relative intron support, log(intron score / average score of other introns in the same transcript)
 
 
-## Other considerations
+## Input data
 
 The datasets for this project will include:
 - the current human gene annotation from [GENCODE](https://www.gencodegenes.org), which we assume that is entirely correct,
@@ -122,7 +122,7 @@ The datasets for this project will include:
 The main input data format for this project is a standard gene annotation format such as GTF or GFF3.
 The transcript and splice junction coordinates as well as their sequences will be extracted in order to obtain the relevant features by, for instance, comparing coordinates with existing annotation or repeat features. Help will be provided in this respect.
 
-The set of features and thresholds that we have used so far is orientative for this project. We encourage the student to investigate the use of additional features for both transcripts and splice junctions. 
+As mentioned above, the set of features and thresholds that we have used so far is by no means definitive. We encourage the student to investigate the use of additional features for both transcripts and splice junctions. 
 
 
 
