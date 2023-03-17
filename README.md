@@ -44,13 +44,13 @@ Our method uses very strict thresholds to ensure that no poor-quality models are
 
 - Filters include:
 
-  - using a very limited definition of canonical splicing - GT-AG only
-
+  - using a very limited definition of canonical splicing 
+    - GT-AG only
     - Any other introns rejected
 
   - using the expression of any novel introns relative to the expression of annotated introns at the same locus
 
-    - Using Recount 3 RNAseq intron spanning reads (https://rna.recount.bio)
+    - Using [Recount3](https://rna.recount.bio) RNAseq intron spanning reads 
 
   - using overlaps of splice sites with repeat elements
 
@@ -90,9 +90,9 @@ Mentors will be able to offer guidance on the use of existing annotation, the bi
 ## Background of the project
 
 The arrival of long read transcriptomics technologies has provided us with potentially hundreds of thousands of possible novel transcript variants that could be added to already well-annotated genomes such as human and mouse. However, manual gene annotation is very time-consuming, so we created an automated workflow to process these datasets while minimising the addition of low quality transcripts that would have been rejected by experienced annotators.
-In order to evaluate the problems that we could face, we carried out a test with the manual annotation of almost 2000 transcripts generated from alignments of long reads from various sources against the human genome sequence. Our gene annotators identified a set of features that could be useful to predict whether a transcript was not good enough to be integrated in the human gene annotation. 
+In order to evaluate the problems that we could face, we carried out a test with the manual annotation of almost 2,000 transcripts generated from alignments of long reads from various sources against the human genome sequence. Our gene annotators identified a set of features that could be useful to predict whether a transcript was not good enough to be integrated in the human gene annotation. 
 Subsequently, we performed an exploratory analysis to determine the relevance of these features in the annotators' decisions.
-Eventually, we decided to set stringent thresholds for the values of these features and use them to filter out low quality long read transcripts.
+Eventually, we decided to set stringent thresholds these features based on our observations and use them to filter out low quality long read transcripts.
 
 Splice junctions are the most important determinants of transcript quality. An annotator will reject a transcript if one of its splice junctions is  incorrect. This explains why most of the chosen features were related to splice junctions.
 
@@ -111,12 +111,18 @@ The data underlying the analysis can be found in this file. The most relevant co
 - bbiotype: gene biotype category
 - rel_int_sup: relative intron support, log(intron score / average score of other introns in the same transcript)
 
-The training dataset will include the current human gene annotation, eg. GENCODE, which we assume is entirely correct. A small set of rejected transcripts from long reads can be provided, although this set of negative predictions should be extended by the student during the project.
+
+## Other considerations
+
+The datasets for this project will include:
+- the current human gene annotation from [GENCODE](https://www.gencodegenes.org), which we assume that is entirely correct,
+- a small set of long read transcripts that have been rejected by annotators and,
+- ideally, an extended set of low-quality transcript or splice junction predictions that should be created by the student during the project.
 
 The main input data format for this project is a standard gene annotation format such as GTF or GFF3.
-The student is expected to extract transcript and splice junction coordinates as well as their sequences in order to obtain the relevant features by, for instance, comparing coordinates with existing annotation or repeat features.
+The transcript and splice junction coordinates as well as their sequences will be extracted in order to obtain the relevant features by, for instance, comparing coordinates with existing annotation or repeat features. Help will be provided in this respect.
 
-We encourage the student to investigate the use of additional features for both transcripts and splice junctions.
+The set of features and thresholds that we have used so far is orientative for this project. We encourage the student to investigate the use of additional features for both transcripts and splice junctions. 
 
 
 
