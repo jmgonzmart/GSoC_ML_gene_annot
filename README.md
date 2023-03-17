@@ -1,5 +1,7 @@
 # GSoC_ML_gene_annot
+
 GSoC HAVANA project "Using machine learning to annotate difficult genes"
+
 
 ## Brief Explanation
 
@@ -24,7 +26,6 @@ Medium
 ### Mentors
 
 Jonathan Mudge, Jose Manuel Gonzalez Martinez, Adam Frankish
-
 
 
 ## Detailed description of the project
@@ -84,3 +85,38 @@ We would like the project to investigate other potential data that could be used
 
 
 Mentors will be able to offer guidance on the use of existing annotation, the biology of the processes we are trying to model in the data, finding published data to support the work of the project and the identification of training/test sets.
+
+
+## Background of the project
+
+The arrival of long read transcriptomics technologies has provided us with potentially hundreds of thousands of possible novel transcript variants that could be added to already well-annotated genomes such as human and mouse. However, manual gene annotation is very time-consuming, so we created an automated workflow to process these datasets while minimising the addition of low quality transcripts that would have been rejected by experienced annotators.
+In order to evaluate the problems that we could face, we carried out a test with the manual annotation of almost 2000 transcripts generated from alignments of long reads from various sources against the human genome sequence. Our gene annotators identified a set of features that could be useful to predict whether a transcript was not good enough to be integrated in the human gene annotation. 
+Subsequently, we performed an exploratory analysis to determine the relevance of these features in the annotators' decisions.
+Eventually, we decided to set stringent thresholds for the values of these features and use them to filter out low quality long read transcripts.
+
+Splice junctions are the most important determinants of transcript quality. An annotator will reject a transcript if one of its splice junctions is  incorrect. This explains why most of the chosen features were related to splice junctions.
+
+Details of the annotation assessment results and the exploratory analysis can be found in these slides.
+
+The data underlying the analysis can be found in this file. The most relevant columns are the following:
+- coords: genomic coordinates of the intron
+- outcome: annotator's decision on the quality of the splice junction or the transcript
+- score: number of RNA-seq reads that support the splice junction from a resource similar to Recount3
+- length: intron length
+- prev_annot: whether this splice junction was already present in the human gene annotation
+- splice_site: donor and acceptor site sequence
+- repeat_overlap: whether the splice site (either donor site or acceptor site) overlaps a repeat feature of the human genome sequence
+- ss_antisense: whether the splice site overlaps an exon on the opposite strand
+- transcript_id: transcript identifier in our database
+- bbiotype: gene biotype category
+- rel_int_sup: relative intron support, log(intron score / average score of other introns in the same transcript)
+
+The training dataset will include the current human gene annotation, eg. GENCODE, which we assume is entirely correct. A small set of rejected transcripts from long reads can be provided, although this set of negative predictions should be extended by the student during the project.
+
+The main input data format for this project is a standard gene annotation format such as GTF or GFF3.
+The student is expected to extract transcript and splice junction coordinates as well as their sequences in order to obtain the relevant features by, for instance, comparing coordinates with existing annotation or repeat features.
+
+We encourage the student to investigate the use of additional features for both transcripts and splice junctions.
+
+
+
