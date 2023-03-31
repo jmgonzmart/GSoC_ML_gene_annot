@@ -110,7 +110,7 @@ The data underlying the analysis can be found in [this file](https://github.com/
 - transcript_id: transcript identifier in our database
 - bbiotype: gene biotype category
 - rel_int_sup: relative intron support, log(intron score / average score of other introns in the same transcript)
-
+Note that 'coords' is used as an identifier. It is not an intended feature for a machine learning model. 
 
 ## Input data
 
